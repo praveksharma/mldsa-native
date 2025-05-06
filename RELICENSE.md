@@ -13,3 +13,5 @@ in the mldsa-native project under `Apache-2.0 OR ISC OR MIT`.
 
 - Hanno Becker <beckphan@amazon.co.uk>
 - Matthias Kannwischer <matthias@kannwischer.eu>
+- Rod Chapman <rodchap@amazon.co.uk>
+
