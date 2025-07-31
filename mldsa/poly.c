@@ -8,7 +8,7 @@
 
 #include "ct.h"
 #include "debug.h"
-#include "fips202/fips202x4.h"
+#include MLD_FIPS202X4_HEADER_FILE
 #include "ntt.h"
 #include "poly.h"
 #include "reduce.h"

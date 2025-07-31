@@ -22,7 +22,6 @@
 #define MLD_NAMESPACE(s) MLD_87_ref_##s
 #endif
 
-
 /******************************************************************************
  * Name:        MLD_CONFIG_FILE
  *
@@ -79,6 +78,38 @@
 #endif
 
 /******************************************************************************
+ * Name:        MLD_CONFIG_FIPS202_CUSTOM_HEADER
+ *
+ * Description: Custom header to use for FIPS-202
+ *
+ *              This should only be set if you intend to use a custom
+ *              FIPS-202 implementation, different from the one shipped
+ *              with mlkem-native.
+ *
+ *              If set, it must be the name of a file serving as the
+ *              replacement for mldsa/fips202/fips202.h, and exposing
+ *              the same API (see FIPS202.md).
+ *
+ *****************************************************************************/
+/* #define MLD_CONFIG_FIPS202_CUSTOM_HEADER "SOME_FILE.h" */
+
+/******************************************************************************
+ * Name:        MLD_CONFIG_FIPS202X4_CUSTOM_HEADER
+ *
+ * Description: Custom header to use for FIPS-202-X4
+ *
+ *              This should only be set if you intend to use a custom
+ *              FIPS-202 implementation, different from the one shipped
+ *              with mlkem-native.
+ *
+ *              If set, it must be the name of a file serving as the
+ *              replacement for mldsa/fips202/fips202x4.h, and exposing
+ *              the same API (see FIPS202.md).
+ *
+ *****************************************************************************/
+/* #define MLD_CONFIG_FIPS202X4_CUSTOM_HEADER "SOME_FILE.h" */
+
+/******************************************************************************
  * Name:        MLD_CONFIG_CUSTOM_ZEROIZE
  *
  * Description: In compliance with FIPS 204 Section 3.6.3, mldsa-native zeroizes
@@ -112,6 +143,32 @@
    #include <stdint.h>
    #include "sys.h"
    static MLD_INLINE void mld_zeroize_native(void *ptr, size_t len)
+   {
+       ... your implementation ...
+   }
+   #endif
+*/
+
+/******************************************************************************
+ * Name:        MLD_CONFIG_CUSTOM_RANDOMBYTES
+ *
+ * Description: mldsa-native does not provide a secure randombytes
+ *              implementation. Such an implementation has to provided by the
+ *              consumer.
+ *
+ *              If this option is not set, mlkem-native expects a function
+ *              void randombytes(uint8_t *out, size_t outlen).
+ *
+ *              Set this option and define `mlk_randombytes` if you want to
+ *              use a custom method to sample randombytes with a different name
+ *              or signature.
+ *
+ *****************************************************************************/
+/* #define MLD_CONFIG_CUSTOM_RANDOMBYTES
+   #if !defined(__ASSEMBLER__)
+   #include <stdint.h>
+   #include "sys.h"
+   static MLD_INLINE void mld_randombytes(uint8_t *ptr, size_t len)
    {
        ... your implementation ...
    }

@@ -6,7 +6,8 @@
 #include <string.h>
 
 #include "cbmc.h"
-#include "fips202/fips202.h"
+#include "common.h"
+#include MLD_FIPS202_HEADER_FILE
 #include "packing.h"
 #include "poly.h"
 #include "polyvec.h"
